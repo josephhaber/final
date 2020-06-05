@@ -21,7 +21,7 @@
         <div class="media-body ml-3">
           <h5 class="mt-0"><%= review[:name] %></h5>
           <%= review[:comments] %>
-          <%= review[:rating] %>
+          <h6 class="mt-0">Rating: <%= review[:rating] %> out of 5</h6>
         </div>
       </div>
     <% end %>

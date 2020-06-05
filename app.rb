@@ -27,6 +27,7 @@ end
 get "/courses/:id" do
     @course = courses_table.where(:id => params["id"]).to_a[0]
     @reviews = reviews_table.where(:course_id => params["id"]).to_a
+    # @average = reviews_table.where(:course_id => params["id"]).count
     puts @course.inspect
     puts @reviews.inspect
     view "course"
@@ -46,4 +47,13 @@ get "/courses/:id/reviews/create" do
                        :email => params["email"],
                        :comments => params["comments"])
     view "create_review"
+end
+
+get "/users/new" do
+    view "new_user"
+end
+
+get "/users/create" do
+    puts params
+    view "create_user"
 end
