@@ -1,0 +1,8 @@
+<h1>All Courses Near Evanston, IL</h1>
+<hr class="my-4">
+<ul class="list-unstyled">
+    <% for course in @courses %>
+        <li><a href="/courses/<%= course[:id] %>"><%= course[:name] %></a></li>
+        <hr class="my-4">  
+    <% end %>
+</ul>
