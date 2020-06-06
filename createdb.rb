@@ -19,11 +19,19 @@ end
 DB.create_table! :reviews do
   primary_key :id
   foreign_key :course_id
+  foreign_key :user_id
   Boolean :recommend
   String :name
   String :email
   String :comments, text: true
   Integer :rating
+end
+
+DB.create_table! :users do
+  primary_key :id
+  String :name
+  String :email
+  String :password
 end
 
 # Insert initial (seed) data

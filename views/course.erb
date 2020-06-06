@@ -11,17 +11,20 @@
     <p>Slope: <%= @course[:slope] %></p>
     <hr class="my-4">
     <h3 class="mt-5">Reviews</h3>
+    <hr class="my-4">
     <% for review in @reviews %>
+        <% user = @users_table.where(:id => review[:user_id]).to_a[0] %>
       <div class="media mt-3">
         <% if review[:recommend] %>
-          <i class="fas fa-thumbs-up fa-3x"></i>
+          <i class="fas fa-check-circle"></i>
         <% else %>
-          <i class="fas fa-thumbs-down fa-3x"></i>
+          <i class="fas fa-minus-circle"></i>
         <% end %>
         <div class="media-body ml-3">
-          <h5 class="mt-0"><%= review[:name] %></h5>
+          <h5 class="mt-0"><%= user[:name] %></h5>
           <%= review[:comments] %>
           <h6 class="mt-0">Rating: <%= review[:rating] %> out of 5</h6>
+          <hr class="my-4">
         </div>
       </div>
     <% end %>

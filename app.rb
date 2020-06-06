@@ -17,6 +17,12 @@ after { puts; }                                                                 
 
 courses_table = DB.from(:courses)
 reviews_table = DB.from(:reviews)
+users_table = DB.from(:users)
+
+before do
+    @current_user = users_table.where(:id => session[:user_id]).to_a[0]
+    puts @current_user.inspect
+end
 
 get "/" do
   @courses = courses_table.all
@@ -25,6 +31,7 @@ get "/" do
 end
 
 get "/courses/:id" do
+    @users_table = users_table
     @course = courses_table.where(:id => params["id"]).to_a[0]
     @reviews = reviews_table.where(:course_id => params["id"]).to_a
     # @average = reviews_table.where(:course_id => params["id"]).count
@@ -39,13 +46,12 @@ get "/courses/:id/reviews/new" do
     view "new_review"
 end
 
-get "/courses/:id/reviews/create" do
-    puts params.inspect
+post "/courses/:id/reviews/create" do
     reviews_table.insert(:course_id => params["id"],
                        :recommend => params["recommend"],
-                       :name => params["name"],
-                       :email => params["email"],
+                       :user_id => @current_user[:id],
                        :comments => params["comments"])
+        @course = courses_table.where(:id => params["id"]).to_a[0]
     view "create_review"
 end
 
@@ -53,7 +59,37 @@ get "/users/new" do
     view "new_user"
 end
 
-get "/users/create" do
-    puts params
+post "/users/create" do
+    users_table.insert(:name => params["name"],
+                       :email => params["email"],
+                       :password => BCrypt::Password.create(params["password"]))
     view "create_user"
+end
+
+get "/logins/new" do
+    view "new_login"
+end
+
+post "/logins/create" do
+    puts params
+    email_entered = params["email"]
+    password_entered = params["password"]
+    user = users_table.where(:email => email_entered).to_a[0]
+    if user
+        puts user.inspect
+        if BCrypt::Password.new(user[:password]) == password_entered
+            session[:user_id] = user[:id]
+            view "create_login"
+        else
+            view "create_login_failed"
+        end
+    else 
+        view "create_login_failed"
+    end
+end
+
+# Logout
+get "/logout" do
+    session[:user_id] = nil
+    view "logout"
 end
