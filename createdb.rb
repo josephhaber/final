@@ -14,6 +14,8 @@ DB.create_table! :courses do
   Integer :slope 
   String :public
   String :location
+  String :address
+  String :link
   
 end
 DB.create_table! :reviews do
@@ -43,7 +45,9 @@ courses_table.insert(name: "Canal Shores Golf Course",
                     yards: 3612,
                     slope: 92,
                     public: "Public", 
-                    location: "Evanston, IL")
+                    location: "Evanston, IL",
+                    address: "1030 Central St, Evanston, IL 60201",
+                    link: "https://www.canalshores.org/")
 
 courses_table.insert(name: "Chick Evans Golf Course", 
                     description: "Also known as Evanston/Wilmette Comunity Golf Course, Canal Shores is a short, fun par 60 course winding through Evanston with a great history.",
@@ -51,7 +55,9 @@ courses_table.insert(name: "Chick Evans Golf Course",
                     yards: 5626,
                     slope: 122,
                     public: "Public", 
-                    location: "Morton Grove, IL")
+                    location: "Morton Grove, IL",
+                    address: "6145 Golf Rd, Morton Grove, IL 60053",
+                    link: "https://chickevans.forestpreservegolf.com/")
 
 courses_table.insert(name: "Evanston Golf Club", 
                     description: "A challenging Donald Ross track boasting exquisite greens, with six sets of tees to suit golfers of all levels.",
@@ -59,7 +65,9 @@ courses_table.insert(name: "Evanston Golf Club",
                     yards: 6793,
                     slope: 135,
                     public: "Private", 
-                    location: "Skokie, IL")
+                    location: "Skokie, IL",
+                    address: "4401 Dempster Street, Skokie, IL 60076",
+                    link: "https://www.evanstongolfclub.org/")
 
 courses_table.insert(name: "Indian Hill Golf Club", 
                     description: "A relatively straightforward Donald Ross course, Indian Hill is one of the older private courses in the area, requiring caddies.",
@@ -67,7 +75,9 @@ courses_table.insert(name: "Indian Hill Golf Club",
                     yards: 6600,
                     slope: 123,
                     public: "Private", 
-                    location: "Winnetka, IL")
+                    location: "Winnetka, IL",
+                    address: "1 North Indian Hill Rd, Winnetka, IL 60093",
+                    link: "http://www.indianhillclub.org/")
 
 courses_table.insert(name: "Wilmette Golf Course", 
                     description: "A beautiful suburban course with narrow fairways and quick doglegs, requiring target golf of the highest order.",
@@ -75,4 +85,6 @@ courses_table.insert(name: "Wilmette Golf Course",
                     yards: 6363,
                     slope: 128,
                     public: "Public", 
-                    location: "Wilmette, IL")
+                    location: "Wilmette, IL",
+                    address: "3900 Fairway Dr, Wilmette, IL 60091",
+                    link: "http://www.golfwilmette.com/")

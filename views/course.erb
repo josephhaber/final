@@ -1,14 +1,22 @@
 <div class="row">
-  <div class="col-sm-9">
+  <div class="col-sm-12">
   <hr class="my-4">  
   <h3>
       <i class="fas fa-golf-ball"></i>
       <%= @course[:name] %>
+       <hr class="my-4">  
+       <% if @count == 0 %>
+       <h5>No one has reviewed this course yet - leave a review to see the average rating!</h5>
+        <% else %>
+      <h5>Average Review: <strong><%= @average %></strong> out of 5</h5>
+        <% end %>
+       <hr class="my-4"> 
     </h3>
     <p><%= @course[:description] %></p>
-    <p>Par: <%= @course[:par] %></p>
-    <p>Yardage: <%= @course[:yards] %></p>
-    <p>Slope: <%= @course[:slope] %></p>
+    <p><strong>Par:</strong> <%= @course[:par] %></p>
+    <p><strong>Yardage:</strong>  <%= @course[:yards] %></p>
+    <p><strong>Slope:</strong>  <%= @course[:slope] %></p>
+    <p><a href="<%= @course[:link]%>"</a>Visit the Course Website</p>
     <hr class="my-4">
     <h3 class="mt-5">Reviews</h3>
     <hr class="my-4">
@@ -23,11 +31,21 @@
         <div class="media-body ml-3">
           <h5 class="mt-0"><%= user[:name] %></h5>
           <%= review[:comments] %>
-          <h6 class="mt-0">Rating: <%= review[:rating] %> out of 5</h6>
+          <h6 class="mt-0">Rating: <strong><%= review[:rating] %></strong> out of 5</h6>
           <hr class="my-4">
         </div>
       </div>
     <% end %>
     <p class="mt-5"><a href="/courses/<%= @course[:id] %>/reviews/new" class="btn btn-primary">Review now!</a></p>
-  </div>
+   <hr class="my-4">
+   <h5 class="mt-5">Course Location: <%= @course[:address] %></h5>
+    </div>
+    <iframe
+        width="600"
+        height="450"
+        frameborder="0" 
+        style="border:10"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @lat_long %>&zoom=14" allowfullscreen>
+        </iframe>
 </div>
+<hr class="my-4">

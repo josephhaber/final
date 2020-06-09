@@ -34,9 +34,14 @@ get "/courses/:id" do
     @users_table = users_table
     @course = courses_table.where(:id => params["id"]).to_a[0]
     @reviews = reviews_table.where(:course_id => params["id"]).to_a
-    # @average = reviews_table.where(:course_id => params["id"]).count
+    @average = reviews_table.where(:course_id => params["id"]).avg(:rating)
+    @count = reviews_table.where(:course_id => params["id"]).count
+    results = Geocoder.search(@course[:address])
+    @lat_long = results.first.coordinates.join(",")
     puts @course.inspect
     puts @reviews.inspect
+    puts results.inspect
+    puts @count.inspect
     view "course"
 end
 
@@ -50,7 +55,8 @@ post "/courses/:id/reviews/create" do
     reviews_table.insert(:course_id => params["id"],
                        :recommend => params["recommend"],
                        :user_id => @current_user[:id],
-                       :comments => params["comments"])
+                       :comments => params["comments"],
+                       :rating => params["rating"])
         @course = courses_table.where(:id => params["id"]).to_a[0]
     view "create_review"
 end
