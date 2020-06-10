@@ -40,7 +40,7 @@ end
 courses_table = DB.from(:courses)
 
 courses_table.insert(name: "Canal Shores Golf Course", 
-                    description: "Also known as Evanston/Wilmette Comunity Golf Course, Canal Shores is a short, fun par 60 course winding through Evanston with a great history.",
+                    description: "Also known as Evanston/Wilmette Community Golf Course, Canal Shores is a short, fun par 60 course winding through Evanston with a great history.",
                     par: 60,
                     yards: 3612,
                     slope: 92,
@@ -50,7 +50,7 @@ courses_table.insert(name: "Canal Shores Golf Course",
                     link: "https://www.canalshores.org/")
 
 courses_table.insert(name: "Chick Evans Golf Course", 
-                    description: "Also known as Evanston/Wilmette Comunity Golf Course, Canal Shores is a short, fun par 60 course winding through Evanston with a great history.",
+                    description: "A scenic, well-bunkered 18-hole public course on the Chicago River, offers good risk/reward opportunities for long hitters but narrow fairways and postage-stamp sized greens. ",
                     par: 70,
                     yards: 5626,
                     slope: 122,
