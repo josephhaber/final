@@ -34,7 +34,7 @@ get "/courses/:id" do
     @users_table = users_table
     @course = courses_table.where(:id => params["id"]).to_a[0]
     @reviews = reviews_table.where(:course_id => params["id"]).to_a
-    @average = reviews_table.where(:course_id => params["id"]).avg(:rating)
+    @average = reviews_table.where(:course_id => params["id"]).avg(:rating).to_f
     @count = reviews_table.where(:course_id => params["id"]).count
     results = Geocoder.search(@course[:address])
     @lat_long = results.first.coordinates.join(",")
