@@ -12,7 +12,7 @@ DB.loggers << Logger.new($stdout) unless DB.loggers.size > 0                    
 def view(template); erb template.to_sym; end                                          #
 use Rack::Session::Cookie, key: 'rack.session', path: '/', secret: 'secret'           #
 before { puts; puts "--------------- NEW REQUEST ---------------"; puts }             #
-after { puts; }                                                                       #
+after { puts; }                                                                        #
 #######################################################################################
 
 courses_table = DB.from(:courses)
